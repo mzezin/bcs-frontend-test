@@ -11,6 +11,7 @@ module.exports = {
   'plugins': [
   ],
   'rules': {
+    'react/prop-types': 0,
   },
   'parserOptions': {
     'ecmaFeatures': {
