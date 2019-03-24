@@ -1,12 +1,12 @@
 import React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
-import StockList from './containers/StockList';
+import StockListContainer from './containers/StockListContainer';
 
 const App = () => (
   <div>
     <CssBaseline />
-    <StockList />
+    <StockListContainer />
   </div>
 );
 
