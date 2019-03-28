@@ -1,6 +1,7 @@
 import React from 'react';
 import Select, { createFilter } from 'react-select';
 import { VariableSizeList as List } from 'react-window';
+import { Dropdown } from 'semantic-ui-react';
 
 const filterConfig = {
   matchFrom: 'start',
@@ -22,11 +23,9 @@ const MenuList = (props) => {
       return option.options.length * ITEM_HEIGHT + GROUP_HEADER_HEIGHT;
     }
     return ITEM_HEIGHT;
-  }
+  };
 
-  const getItemSize = (i) => {
-    return getOptionSize(options[i]);
-  }
+  const getItemSize = i => getOptionSize(options[i]);
 
   const totalHeight = options.reduce((height, option) => height + getOptionSize(option), 0);
 
@@ -43,12 +42,17 @@ const MenuList = (props) => {
       {({ index, style }) => <div style={style}>{children[index]}</div>}
     </List>
   );
-}
+};
 
 const StockAutoComplete = props => (
   <Select
     {...props}
     components={{ MenuList }}
+    // fluid
+    // placeholder="Select choice"
+    // scrolling
+    // // options={options}
+    // search
     filterOption={createFilter(filterConfig)}
   />
 );

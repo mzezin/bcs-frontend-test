@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import uuid from 'uuid/v4';
+import { Dropdown } from 'semantic-ui-react';
 
 import { useGetStockList } from '../hooks';
 import StockListPage from '../components/StockListPage';
@@ -53,12 +54,11 @@ const rows = [
 const StockListContainer = () => {
   const [stockList, stockListLoading] = useGetStockList();
   const [myList, setMyList] = useState(rows.map(e => ({ id: uuid(), ...e })));
+  const [newSymbol, setNewSymbol] = useState('AAL');
+  const [newItem, setNewItem] = useState({});
   const deleteRow = id => setMyList(myList.filter(e => e.id !== id));
   const addRow = (listItem) => {
-    const newItem = { ...listItem, id: uuid() };
-    console.log(newItem);
-    setMyList([...myList, newItem]);
-    console.log(myList);
+    setMyList([...myList, { ...listItem, id: uuid() }]);
   };
   return (
     <StockListPage
@@ -67,8 +67,31 @@ const StockListContainer = () => {
       myList={myList}
       deleteRow={deleteRow}
       addRow={addRow}
+      newSymbol={newSymbol}
+      newItem={newItem}
     />
   );
+  // ======================================
+  // const [searchQuery, setSearchQuery] = useState('');
+  // const [searchValue, setSearchValue] = useState('');
+
+  // const [options, loading] = useGetStockList();
+  // const handleChange = (e, { value = '' }) => {
+  //   setSearchQuery(searchQuery);
+  //   setSearchValue(value);
+  // };
+  // const handleSearchChange = (e, { searchQuery }) => setSearchQuery(searchQuery);
+
+
+  // return (
+  //   <Dropdown
+  //     fluid
+  //     placeholder="Select choice"
+  //     scrolling
+  //     options={options}
+  //     search
+  //   />
+  // );
 };
 
 export default StockListContainer;
